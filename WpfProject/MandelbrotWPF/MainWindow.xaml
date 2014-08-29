@@ -1,0 +1,8 @@
+﻿<Window x:Class="MandelbrotWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Mandelbrot" Width="1920" Height="1080">
+    <Grid>
+        <Image/>
+    </Grid>
+</Window>
