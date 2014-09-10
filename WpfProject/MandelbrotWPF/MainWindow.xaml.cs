@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -33,20 +34,52 @@ namespace MandelbrotWPF
             InitializeComponent();
             DataContext = this;
 
-            var file = File.Create(@"Mandelbrot.png");
-            
-            var bitmap = new Bitmap(1, 1);
-            bitmap.Save(file, ImageFormat.Png);
-            
+            Loaded += MainWindow_Loaded;
+        }
+
+        void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            //var file = File.Create(@"Mandelbrot.png");
+
+            //var bitmap = new Bitmap(1, 1);
+            //bitmap.Save(file, ImageFormat.Png);
+            Update();
+            //Process.Start(@"Mandelbrot.png");
+        }
+
+        protected override void OnKeyUp(KeyEventArgs e)
+        {
+            base.OnKeyUp(e);
+
+            switch (e.Key)
+            {
+                case Key.Down:
+                    {
+
+                    }
+            }
         }
 
         private const double Zoom = 100d;
 
         public async void Update()
         {
-            var file = File.Create(@"Mandelbrot.png");
+            //var file = File.Create(@"Mandelbrot.png");
+            //bitmap.Save(file, ImageFormat.Png);
+
             var bitmap = await DrawMandel();
-            bitmap.Save(file, ImageFormat.Png);
+
+            using (var memoryStream = new MemoryStream())
+            {
+                bitmap.Save(memoryStream, ImageFormat.Png);
+                memoryStream.Position = 0;
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.StreamSource = memoryStream;
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.EndInit();
+                Image.Source = bitmapImage;
+            }
 
             //_imagePath = @"Mandelbrot.png";
         }
@@ -62,21 +95,19 @@ namespace MandelbrotWPF
             return Color.FromArgb(255, r, g, b);
         }
 
+        //TODO: change to size of window
         private const int Width = 1920;
         private const int Height = 1080;
 
         private int ColumnCompletionCounter = 0;
 
         private readonly object Lock = new object();
+        private readonly object OuterLock = new object();
 
         private async Task<Bitmap> DrawMandel()
         {
             var b = new Bitmap(Width, Height);
 
-            //const double xmin = -2.1;
-            //const double ymin = -1.3;
-            //const double xmax = 1;
-            //const double ymax = 1.3;
             const double xmin = -2.1;
             const double ymin = -1.3;
             const double xmax = 1;
@@ -87,7 +118,7 @@ namespace MandelbrotWPF
             const double scrollX = -2d + (xmax - xmin)*774/Width;
             const double scrollY = -1.3d + (xmax - xmin)*548/Height;
 
-            const int iterations = 500;
+            const int iterations = 200;
 
             Parallel.For((long) 0, Width, i =>
             {
@@ -119,8 +150,7 @@ namespace MandelbrotWPF
                 Console.WriteLine("Percent Complete = " + ColumnCompletionCounter + "/" + Width + " Percent = " +
                                     ColumnCompletionCounter*100/Width);
             });
-            return b; // bq is a globally defined bitmap
-            //return bq; // Draw it to the form
+            return b;
         }
 
         public Color IterationColor(int iteration)

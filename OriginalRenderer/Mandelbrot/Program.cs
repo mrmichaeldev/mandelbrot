@@ -15,7 +15,7 @@ namespace Mandelbrot
     internal class Program
     {
         //private const double Zoom = 100d;
-        private const double Zoom = 120d;
+        private const double Zoom = 12000d;
 
         private static void Main(string[] args)
         {
@@ -37,7 +37,7 @@ namespace Mandelbrot
             return Color.FromArgb(255, r, g, b);
         }
 
-        private const int Width = 1921;
+        private const int Width = 1920;
         private const int Height = 1080;
 
         private static int ColumnCompletionCounter = 0;
