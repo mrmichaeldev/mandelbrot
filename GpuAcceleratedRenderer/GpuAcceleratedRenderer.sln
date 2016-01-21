@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GpuAcceleratedRenderer", "GpuAcceleratedRenderer\GpuAcceleratedRenderer.vcxproj", "{E4E433D8-79E5-494E-868B-84ED2E242ADD}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "freeglut", "..\freeglut.vcxproj", "{FC689D50-322E-3C66-A9B0-DADF1363E38F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		MinSizeRel|x64 = MinSizeRel|x64
+		MinSizeRel|x86 = MinSizeRel|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+		RelWithDebInfo|x64 = RelWithDebInfo|x64
+		RelWithDebInfo|x86 = RelWithDebInfo|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E4E433D8-79E5-494E-868B-84ED2E242ADD}.Debug|x64.ActiveCfg = Debug|x64
+		{E4E433D8-79E5-494E-868B-84ED2E242ADD}.Debug|x64.Build.0 = Debug|x64
+		{E4E433D8-79E5-494E-868B-84ED2E242ADD}.Debug|x86.ActiveCfg = Debug|Win32
+		{E4E433D8-79E5-494E-868B-84ED2E242ADD}.Debug|x86.Build.0 = Debug|Win32
+		{E4E433D8-79E5-494E-868B-84ED2E242ADD}.MinSizeRel|x64.ActiveCfg = Release|x64
+		{E4E433D8-79E5-494E-868B-84ED2E242ADD}.MinSizeRel|x64.Build.0 = Release|x64
+		{E4E433D8-79E5-494E-868B-84ED2E242ADD}.MinSizeRel|x86.ActiveCfg = Release|Win32
+		{E4E433D8-79E5-494E-868B-84ED2E242ADD}.MinSizeRel|x86.Build.0 = Release|Win32
+		{E4E433D8-79E5-494E-868B-84ED2E242ADD}.Release|x64.ActiveCfg = Release|x64
+		{E4E433D8-79E5-494E-868B-84ED2E242ADD}.Release|x64.Build.0 = Release|x64
+		{E4E433D8-79E5-494E-868B-84ED2E242ADD}.Release|x86.ActiveCfg = Release|Win32
+		{E4E433D8-79E5-494E-868B-84ED2E242ADD}.Release|x86.Build.0 = Release|Win32
+		{E4E433D8-79E5-494E-868B-84ED2E242ADD}.RelWithDebInfo|x64.ActiveCfg = Release|x64
+		{E4E433D8-79E5-494E-868B-84ED2E242ADD}.RelWithDebInfo|x64.Build.0 = Release|x64
+		{E4E433D8-79E5-494E-868B-84ED2E242ADD}.RelWithDebInfo|x86.ActiveCfg = Release|Win32
+		{E4E433D8-79E5-494E-868B-84ED2E242ADD}.RelWithDebInfo|x86.Build.0 = Release|Win32
+		{FC689D50-322E-3C66-A9B0-DADF1363E38F}.Debug|x64.ActiveCfg = Debug|Win32
+		{FC689D50-322E-3C66-A9B0-DADF1363E38F}.Debug|x86.ActiveCfg = Debug|Win32
+		{FC689D50-322E-3C66-A9B0-DADF1363E38F}.Debug|x86.Build.0 = Debug|Win32
+		{FC689D50-322E-3C66-A9B0-DADF1363E38F}.MinSizeRel|x64.ActiveCfg = MinSizeRel|Win32
+		{FC689D50-322E-3C66-A9B0-DADF1363E38F}.MinSizeRel|x86.ActiveCfg = MinSizeRel|Win32
+		{FC689D50-322E-3C66-A9B0-DADF1363E38F}.MinSizeRel|x86.Build.0 = MinSizeRel|Win32
+		{FC689D50-322E-3C66-A9B0-DADF1363E38F}.Release|x64.ActiveCfg = Release|Win32
+		{FC689D50-322E-3C66-A9B0-DADF1363E38F}.Release|x86.ActiveCfg = Release|Win32
+		{FC689D50-322E-3C66-A9B0-DADF1363E38F}.Release|x86.Build.0 = Release|Win32
+		{FC689D50-322E-3C66-A9B0-DADF1363E38F}.RelWithDebInfo|x64.ActiveCfg = RelWithDebInfo|Win32
+		{FC689D50-322E-3C66-A9B0-DADF1363E38F}.RelWithDebInfo|x86.ActiveCfg = RelWithDebInfo|Win32
+		{FC689D50-322E-3C66-A9B0-DADF1363E38F}.RelWithDebInfo|x86.Build.0 = RelWithDebInfo|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

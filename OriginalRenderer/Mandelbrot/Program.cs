@@ -62,7 +62,7 @@ namespace Mandelbrot
             const double scrollX = (-2.2d + panX * Zoom) * (xmax - xmin) / Zoom / 2 * Height / Width;//-2d + (xmax - xmin) / Width;
             const double scrollY = (-1.5d + panY * Zoom) * (xmax - xmin) / Zoom / 2 * Height / Width;//-1.3d + (xmax - xmin) / Height / Height;
 
-            const int iterations = 500;
+            const int iterations = 200;
 
             Parallel.For((long)0, Width, i =>
             {
