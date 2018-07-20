@@ -11,9 +11,9 @@ namespace MandelbrotRenderer
 {
     public static class RendererFactory
     {
-        public static Rgba32[] GetRender(string path, int width, int height)
+        public static Rgba32[] GetRender(int iterations, int width, int height, double panX, double panY, double zoom)
         {
-            using (var file = File.Create(path)) { }
+            //using (var file = File.Create(path)) { }
 
             var image = new Image<Rgba32>(width, height);
 
@@ -24,7 +24,7 @@ namespace MandelbrotRenderer
             {
                 try
                 {
-                    values = ilGpuFilter.Apply();
+                    values = ilGpuFilter.Apply(iterations, width, height, panX, panY, zoom);
                 }
                 catch (Exception exc)
                 {

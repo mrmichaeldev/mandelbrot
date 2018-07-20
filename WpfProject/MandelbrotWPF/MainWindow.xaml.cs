@@ -50,17 +50,51 @@ namespace MandelbrotWPF
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            mainViewmodel.Width = (int)this.Width;
+            mainViewmodel.Height = (int)this.Height;
             mainViewmodel.Update();
         }
 
-        protected async override void OnKeyUp(KeyEventArgs e)
+        protected override void OnKeyUp(KeyEventArgs e)
         {
+            var moveSpeed = 4d;
             base.OnKeyUp(e);
 
             switch (e.Key)
             {
+                case Key.OemMinus:
+                    {
+                        mainViewmodel.Zoom *= 1 - 1 / moveSpeed;
+                        mainViewmodel.Update();
+                        break;
+                    }
+                case Key.OemPlus:
+                    {
+                        mainViewmodel.Zoom *= 1 + 1 / moveSpeed;
+                        mainViewmodel.Update();
+                        break;
+                    }
+                case Key.Left:
+                    {
+                        mainViewmodel.PanY -= 2.6/mainViewmodel.Zoom / moveSpeed;
+                        mainViewmodel.Update();
+                        break;
+                    }
+                case Key.Right:
+                    {
+                        mainViewmodel.PanY += 2.6 / mainViewmodel.Zoom / moveSpeed;
+                        mainViewmodel.Update();
+                        break;
+                    }
+                case Key.Up:
+                    {
+                        mainViewmodel.PanX -= 3.1 / mainViewmodel.Zoom/ moveSpeed;
+                        mainViewmodel.Update();
+                        break;
+                    }
                 case Key.Down:
                     {
+                        mainViewmodel.PanX += 3.1 / mainViewmodel.Zoom / moveSpeed;
                         mainViewmodel.Update();
                         break;
                     }

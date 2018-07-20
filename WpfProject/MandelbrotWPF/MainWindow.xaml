@@ -3,8 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Mandelbrot" WindowStyle="None" WindowState="Maximized" ResizeMode="NoResize" >
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <Image Name="Image" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        
+        <Image Focusable="True" Name="Image" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <TextBox Background="Transparent" Height="50" Text="{Binding Iterations}" Margin="10,10,652,474.667"/>
+
 
     </Grid>
 </Window>

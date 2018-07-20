@@ -29,36 +29,33 @@ namespace ImageProcessor.ImageFilters
             pixelArray[index] = Mandelbrot(x, y, imageParams[2], variables);
         }
 
-        public Rgba32[] Apply()
+        public Rgba32[] Apply(int iterations, int width, int height, double panX, double panY, double zoom)
         {
-            const int Width = 1920;
-            const int Height = 1080;
-            using (MemoryBuffer<Rgba32> buffer = this.gpu.Allocate<Rgba32>(Width * Height))
+            using (MemoryBuffer<Rgba32> buffer = this.gpu.Allocate<Rgba32>(width * height))
             {
-                const int iterations = 200;
+                //int iterations = (int)(255 * zoom);
                 using (MemoryBuffer<int> imageParams = this.gpu.Allocate<int>(3))
                 {
-                    imageParams[0] = Width;
-                    imageParams[1] = Height;
+                    imageParams[0] = width;
+                    imageParams[1] = height;
                     imageParams[2] = iterations;
                     using (MemoryBuffer<double> variables = this.gpu.Allocate<double>(10))
                     {
-                        const double Zoom = 12000d;
                         const double xmin = -2.1;
-                        const double ymin = -1.3;
                         const double xmax = 1;
+                        const double ymin = -1.3;
                         const double ymax = 1.3;
 
-                        const double panX = .4443d;
-                        const double panY = .172d;
+                        //const double panX = .4443d;
+                        //const double panY = .172d;
 
-                        const double integralX = (xmax - xmin) / Width / Zoom;
-                        const double integralY = (ymax - ymin) / Height / Zoom;
+                        double integralX = (xmax - xmin) / width / zoom;
+                        double integralY = (ymax - ymin) / height / zoom;
 
-                        const double scrollX = (-2.2d + panX * Zoom) * (xmax - xmin) / Zoom / 2 * Height / Width;//-2d + (xmax - xmin) / Width;
-                        const double scrollY = (-1.5d + panY * Zoom) * (xmax - xmin) / Zoom / 2 * Height / Width;//-1.3d + (xmax - xmin) / Height / Height;
+                        double scrollX = (-2.2d + panX * zoom) * (xmax - xmin) / zoom / 2 * height / width;//-2d + (xmax - xmin) / Width;
+                        double scrollY = (-1.5d + panY * zoom) * (xmax - xmin) / zoom / 2 * height / width;//-1.3d + (xmax - xmin) / Height / Height;
 
-                        variables[0] = Zoom;
+                        variables[0] = zoom;
                         variables[1] = xmin;
                         variables[2] = ymin;
                         variables[3] = ymax;
@@ -68,9 +65,6 @@ namespace ImageProcessor.ImageFilters
                         variables[7] = integralY;
                         variables[8] = scrollX;
                         variables[9] = scrollY;
-
-                        //buffer.CopyFrom(pixelArray, 0, Index.Zero, pixelArray.Length);
-
 
                         this.kernel(buffer.Length, buffer.View, imageParams.View, variables.View);
 
@@ -98,13 +92,14 @@ namespace ImageProcessor.ImageFilters
                 x1 = xx;
             }
 
-            double val = Math.Abs(looper / iterations);
+            //double val = Math.Abs(looper / iterations);
+            var val = (double)looper / (double)iterations * 255;
             return new Rgba32
             {
                 A = 255,
-                R = (byte)(255 * val * (val * 10 % 3 / 3)),
-                G = (byte)(255 * (1 - val) * (val * 10 % 3 / 3)),
-                B = (byte)(255 * (val * 10 % 3 / 3))
+                R = (byte)(val),
+                G = (byte)(val),
+                B = (byte)(val)
             };
         }
 
