@@ -46,9 +46,6 @@ namespace ImageProcessor.ImageFilters
                         const double ymin = -1.3;
                         const double ymax = 1.3;
 
-                        //const double panX = .4443d;
-                        //const double panY = .172d;
-
                         double integralX = (xmax - xmin) / width / zoom;
                         double integralY = (ymax - ymin) / height / zoom;
 
